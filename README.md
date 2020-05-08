@@ -1,7 +1,8 @@
 # data-scientist-disaster-response-pipeline
 Disaster Response Pipeline
 
-# Project Structure
+# Project Structure/Skeleton
+
 - app
 | - template
 | |- master.html            # main page of web app
@@ -16,6 +17,6 @@ Disaster Response Pipeline
 
 - models
 |- train_classifier.py
-|- classifier.pkl           # saved model 
+|- classifier.pkl           # saved model
 
 - README.md
