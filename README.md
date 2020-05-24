@@ -21,6 +21,16 @@ Disaster Response Pipeline
 
 - README.md
 
+### Setup
+1. Install Miniconda - https://docs.conda.io/en/latest/miniconda.html
+2. conda env remove -n disaster_reponse_pipeline_env
+3. conda env create -f disaster_reponse_pipeline_env.yaml
+4. conda info --envs
+5. conda env list
+6. conda activate disaster_reponse_pipeline_env
+7. jupyter notebook
+8. conda deactivate
+
 ### App Run Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
