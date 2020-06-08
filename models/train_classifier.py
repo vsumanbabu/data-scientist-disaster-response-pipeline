@@ -84,7 +84,7 @@ def main():
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
         print('Building model...')
-        model = []
+
         model = build_model()
 
         print('Training model...')
