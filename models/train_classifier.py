@@ -20,6 +20,23 @@ from bs4 import BeautifulSoup
 
 def load_data(database_filepath):
     '''
+    Input:
+        database_filepath: String
+            Filepath of the database wher messages and categories are stored
+
+
+    Logic:
+        Read messages and categories from sql database
+        Seperate messages as Input variable
+        Seperate categoreis into predict variable
+
+    Output:
+        X: Dataframe
+            Messages
+        Y: Dataframe
+            Categories the messages belong to
+        category_names: List
+            Lables for different categories
     '''
     engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql_table('response',engine)
@@ -32,6 +49,16 @@ def load_data(database_filepath):
 
 def tokenize(text):
     '''
+    Input:
+        text: String
+            Input Message
+
+    Logic:
+        Tokenize Message into relevant tokens using NLP techniques
+
+    Output:
+        tokens: List
+            List of tokens
     '''
     tokenizer = RegexpTokenizer(r'\w+')
     tokens=tokenizer.tokenize(text)
@@ -40,6 +67,12 @@ def tokenize(text):
 
 def build_model():
     '''
+    Input: None
+
+    Logic: Create a pipleline and build Model
+
+    Output:
+        Pipeline: Pipleline
     '''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -52,6 +85,17 @@ def build_model():
 
 def evaluate_model(model, X_test, Y_test, category_names):
     '''
+    Input:
+        model: ML/NLP Model
+        X_test: Test set
+        Y_test: Predicted data set
+        category_names:
+
+    Logic:
+        Measure the Accuracy of the predicted model
+
+    Output:
+        Accuracy
 
     '''
     Y_pred = model.predict(X_test)
@@ -64,7 +108,20 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 def save_model(model, model_filepath):
     '''
-    model_filepath='../models/classifier.pkl'
+    Input:
+        model: Model
+            Model Pipeline
+        model_filepath: String
+            File Path where Model needs to be saved
+
+    Logic:
+        Create a Pickle file for the Trained Model
+
+    Output: Pickle File
+        Save the Model as a Pickel File
+
+    Example:
+        model_filepath='../models/classifier.pkl'
     '''
     pickle.dump(model, open(model_filepath, "wb"))
 

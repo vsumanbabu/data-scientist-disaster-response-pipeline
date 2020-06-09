@@ -7,8 +7,23 @@ from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
     '''
-    messages_filepath='../data/disaster_messages.csv'
-    categories_filepath='../data/disaster_categories.csv'
+    Input:
+        messages_filepath: String
+            File path for messages data
+        categories_filepath: String
+            File path for categories data
+
+    Logic:
+        Read csv files having messages and categories data
+        Merge messges and categories
+
+    Output:
+        df_merge_message_categories: Dataframe
+            Merge of messages and categories
+
+    Examples -
+        messages_filepath='../data/disaster_messages.csv'
+        categories_filepath='../data/disaster_categories.csv'
     '''
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
@@ -18,6 +33,18 @@ def load_data(messages_filepath, categories_filepath):
 
 def clean_data(df):
     '''
+    Input:
+        df: dataframe
+            Merged dataframe of messages and categories
+    Logic:
+        Split the categories
+        Rename Columns
+        Convert to integers
+        Drop duplicates
+
+    Output:
+        df: dataframe
+            Cleaned dataframe
     '''
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';',expand=True)
@@ -47,6 +74,19 @@ def clean_data(df):
 
 def save_data(df, database_filename):
     '''
+    Input:
+        df: Dataframe
+            Merged and split data of messages and responses
+
+        database_filename: String
+            Name of the database to be created
+
+    Logic:
+        Write the cleansed messages and categories to a sql database
+    Output:
+        Create database with table
+
+    Example:
     database_filename=''sqlite:///../data/disaster.db''
     '''
     engine = create_engine('sqlite:///'+ database_filename)
