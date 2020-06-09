@@ -31,6 +31,9 @@ Disaster Response Pipeline
 7. jupyter notebook
 8. conda deactivate
 
+### Github Repo
+https://github.com/vsumanbabu/data-scientist-disaster-response-pipeline
+
 ### App Run Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
